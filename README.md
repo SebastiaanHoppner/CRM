@@ -1,2 +1,2 @@
 # CRM
-Cellwise Robust M-regression
+This repository is part of the paper on Cellwise Robust M Regression. It contains the R package crm with the implementation of the Cellwise Robust M-regression (CRM) algorithm and the SPArse DIrections of Maximal Outlyingness (SPADIMO) algorithm. The package also includes the predict function for fitted CRM regression models, the data preprocessing function used by CRM as well as the function that creates the cellwise heatmaps in the paper. Furthermore, the repository contains the R script for the simuation study and the application of CRM on the Nutrients data set.
