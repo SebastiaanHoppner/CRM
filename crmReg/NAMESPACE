@@ -1,0 +1,20 @@
+importFrom("FNN", "get.knnx")
+importFrom("ggplot2", "aes", "element_text", "geom_line", "geom_point",
+           "ggplot", "ggtitle", "labs", "theme")
+importFrom("gplots", "heatmap.2")
+importFrom("graphics", "plot")
+importFrom("pcaPP", "l1median", "qn")
+importFrom("plyr", "ldply")
+importFrom("robustbase", "lmrob", "ltsReg", "Qn")
+importFrom("rrcov", "PcaHubert")
+importFrom("stats", "coef", "delete.response", "lm", "median", "model.frame",
+           "model.matrix", "qchisq", "qnorm", "sd", "terms",
+           "weighted.mean")
+
+export(cellwiseheatmap)
+export(crm)
+export(daprpr)
+export(predict.crm)
+export(spadimo)
+
+S3method(predict, crm)

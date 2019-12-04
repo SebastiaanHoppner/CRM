@@ -1,0 +1,18 @@
+Package: crmReg
+Type: Package
+Title: Cellwise Robust M-regression
+Version: 1.0.0
+Author: Peter Filzmoser [aut],
+  Sebastiaan Höppner [aut],
+  Iréne Ortner [aut],
+  Sven Serneels [aut, cre],
+  Tim Verdonck [aut]
+Maintainer: Sven Serneels <svenserneels@gmail.com>
+Description: Cellwise Robust M-regression.
+Depends: R (>= 3.2.0)
+Imports: FNN, ggplot2, gplots, pcaPP, plyr, robustbase, rrcov
+License: GPL (>= 2)
+LazyLoad: yes
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: yes
