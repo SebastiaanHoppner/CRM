@@ -1,5 +1,6 @@
 spadimo <- function(data, weights, obs,
-                    control = list(nlatent   = 1,
+                    control = list(scaleFun  = Qn,
+                                   nlatent   = 1,
                                    etas      = NULL,
                                    csqcritv  = 0.975,
                                    stopearly = FALSE,
@@ -64,7 +65,11 @@ spadimo <- function(data, weights, obs,
 
   # (2) Robust standardization of data
   robLoc <- apply(x, 2, weighted.mean, w) #robLoc <- apply(x, 2, median)
-  robScale <- apply(x, 2, Qn)
+  robScale <- apply(x, 2, control$scaleFun)
+  if (any(robScale < .Machine$double.eps)) {
+    stop("The following variables have 0 scale:\n ",
+         paste(names(which(robScale < .Machine$double.eps)), collapse = ", "))
+  }
   z <- scale(x, center = robLoc, scale = robScale)
 
 

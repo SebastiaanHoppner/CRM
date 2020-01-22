@@ -7,7 +7,7 @@
 \description{Sparse directions of maximal outlyingness.}
 
 \usage{spadimo(data, weights, obs,
-        control = list(nlatent = 1, etas = NULL, csqcritv  = 0.975,
+        control = list(scaleFun = Qn, nlatent = 1, etas = NULL, csqcritv  = 0.975,
                        stopearly = FALSE, trace = FALSE, plot = TRUE))}
 
 \arguments{
@@ -16,6 +16,9 @@
 \item{obs}{the (integer) case number under consideration.}
 \item{control}{a list of options that control details of the \code{crm} algorithm. The following options are available:
 \itemize{
+\item{\code{scaleFun} \cr
+function used for robust scaling the variables (e.g. \code{Qn}, \code{mad}, etc.).}
+
 \item{\code{nlatent} \cr
 integer number of latent variables for sparse PLS regression (via SNIPLS) (default is \code{1}).}
 

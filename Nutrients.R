@@ -88,13 +88,19 @@ cellwiseheatmap(cellwiseoutliers = crm_fit$cellwiseoutliers[casesOfInterest, ],
 
 # Cross-validation --------------------------------------------------------------------------------
 library(caret)
+library(cellWise)
 library(robustbase)
 
 nfolds <- 10
 set.seed(2019)
 folds <- createFolds(y = transNutrients$log.cholesterol, k = nfolds)
 
-RMSE <- data.frame(CRM = rep(NA, nfolds), MM = rep(NA, nfolds))
+RMSE <- data.frame(CRM     = rep(NA, nfolds),
+                   MM      = rep(NA, nfolds),
+                   DDC_MM  = rep(NA, nfolds),
+                   OLS     = rep(NA, nfolds),
+                   DDC_OLS = rep(NA, nfolds))
+names(RMSE) <- c("CRM", "MM", "DDC-MM", "OLS", "DDC-OLS")
 
 set.seed(2019)
 for (k in 1:nfolds) {
@@ -102,6 +108,15 @@ for (k in 1:nfolds) {
   
   train <- transNutrients[-folds[[k]], ]
   test  <- transNutrients[ folds[[k]], ]
+  
+  cat(" DDC - training set:")
+  DDC_Xtrain <- DDC(train[, -1])$Ximp
+  cat(" DDC - test set:")
+  DDC_Xtest  <- DDC(test[, -1])$Ximp
+  
+  trainDDC <- cbind.data.frame(train$log.cholesterol, DDC_Xtrain)
+  testDDC  <- cbind.data.frame(test$log.cholesterol,  DDC_Xtest)
+  names(trainDDC) <- names(testDDC) <- names(train)
   
   crm_fit <- crm(formula   = log.cholesterol ~ .,
                  data      = train,
@@ -115,19 +130,29 @@ for (k in 1:nfolds) {
                  seed      = 2019,
                  verbose   = FALSE)
   
-  mm_fit <- lmrob(formula = log.cholesterol ~ ., data = train, method = "MM")
+  mm_fit      <- lmrob(formula = log.cholesterol ~ ., data = train,    method = "MM")
+  ddc_mm_fit  <- lmrob(formula = log.cholesterol ~ ., data = trainDDC, method = "MM")
   
-  pred_test_crm <- predict(crm_fit, newdata = test)
-  pred_test_mm  <- predict(mm_fit,  newdata = test)
+  ols_fit     <- lm(formula = log.cholesterol ~ ., data = train)
+  ddc_ols_fit <- lm(formula = log.cholesterol ~ ., data = trainDDC)
   
-  RMSE$CRM[k] <- sqrt(mean((test$log.cholesterol - pred_test_crm)^2, trim = 0.1))
-  RMSE$MM[k]  <- sqrt(mean((test$log.cholesterol - pred_test_mm)^2,  trim = 0.1))
+  pred_test_crm     <- predict(crm_fit,     newdata = test)
+  pred_test_mm      <- predict(mm_fit,      newdata = test)
+  pred_test_ddc_mm  <- predict(ddc_mm_fit,  newdata = testDDC)
+  pred_test_ols     <- predict(ols_fit,     newdata = test)
+  pred_test_ddc_ols <- predict(ddc_ols_fit, newdata = testDDC)
+  
+  RMSE$`CRM`[k]     <- sqrt(mean((test$log.cholesterol - pred_test_crm)^2,     trim = 0.1))
+  RMSE$`MM`[k]      <- sqrt(mean((test$log.cholesterol - pred_test_mm)^2,      trim = 0.1))
+  RMSE$`DDC-MM`[k]  <- sqrt(mean((test$log.cholesterol - pred_test_ddc_mm)^2,  trim = 0.1))
+  RMSE$`OLS`[k]     <- sqrt(mean((test$log.cholesterol - pred_test_ols)^2,     trim = 0.1))
+  RMSE$`DDC-OLS`[k] <- sqrt(mean((test$log.cholesterol - pred_test_ddc_ols)^2, trim = 0.1))
 }
 
 boxplot(RMSE, ylab = "10% trimmed RMSEP", col = "olivedrab4",
         ylim = c(0, max(RMSE)), cex.lab = 1.4, cex.axis = 1.4, cex.main = 2)
 points(colMeans(RMSE), pch = 18, cex = 1.5)
-text(rep(0, 2), labels = round(colMeans(RMSE), 4), cex = 2,
-     font = ifelse(1:2 == which.min(colMeans(RMSE)), 2, 1))
+text(rep(0, ncol(RMSE)), labels = round(colMeans(RMSE), 4), cex = 2,
+     font = ifelse(1:ncol(RMSE) == which.min(colMeans(RMSE)), 2, 1))
 
 

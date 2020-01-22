@@ -153,7 +153,8 @@ crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.fa
     suppressWarnings(
       outlvars <- lapply(outliers, function (x) {spadimo(data = datamc[, 2:nCol],
                                                          weights = wr, obs = x,
-                                                         control = list(nlatent   = 1,
+                                                         control = list(scaleFun  = Qn,
+                                                                        nlatent   = 1,
                                                                         etas      = spadieta,
                                                                         csqcritv  = 0.975,
                                                                         stopearly = TRUE,
@@ -230,7 +231,8 @@ crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.fa
       suppressWarnings(
         outlvars <- lapply(outliers, function (x) spadimo(data = datamc_imputed[, 2:nCol],
                                                           weights = wr, obs = x,
-                                                          control = list(nlatent   = 1,
+                                                          control = list(scaleFun  = Qn,
+                                                                         nlatent   = 1,
                                                                          etas      = spadieta,
                                                                          csqcritv  = 0.975,
                                                                          stopearly = FALSE,
