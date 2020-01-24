@@ -12,7 +12,6 @@ pct_case_out <- 0.05   # percentage of casewise outliers
 pct_cell_out <- 0.10   # percentage of cellwise outliers for each casewise outlier
 nsims <- 20            # number of simulations
 k_seq <- 0:8           # sequence of parameter values that determine the contamination
-seed <- 2020 # 2019 or... 2020?
 
 
 # CRM input parameters - - - - - - - - - - - - - -
@@ -41,7 +40,7 @@ results_recall    <- list()
 results_time      <- list()
 
 t_start <- proc.time()
-set.seed(seed)
+set.seed(2020)
 
 
 for (k_value in k_seq) {
