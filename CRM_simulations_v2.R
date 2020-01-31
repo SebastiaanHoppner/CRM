@@ -10,7 +10,7 @@ n <- 400               # number of cases
 p <- 50                # number of predictor variables
 pct_case_out <- 0.05   # percentage of casewise outliers
 pct_cell_out <- 0.10   # percentage of cellwise outliers for each casewise outlier
-nsims <- 20            # number of simulations for each value of k
+nsims <- 10            # number of simulations for each value of k
 k_seq <- 0:8           # sequence of parameter values that determine the contamination
 
 
