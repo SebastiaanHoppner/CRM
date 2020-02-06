@@ -60,7 +60,7 @@ print(round(crm_fit$coefficients, 5))
 casesOfInterest <- which(crm_fit$casewiseoutliers)
 print(length(casesOfInterest))
 print(rownames(nutrients)[casesOfInterest])
-# 26 out of 193 food products are considered as casewise outliers by the CRM algorithm
+# 30 out of 193 food products are considered as casewise outliers by the CRM algorithm
 
 
 # heatmap of cellwise outliers - - - - - - - - - -
@@ -70,10 +70,19 @@ nutrients_casesOfInterest <- round(nutrients[casesOfInterest, -1], 1)
 rownames(nutrients_casesOfInterest) <- substr(rownames(nutrients_casesOfInterest), 1,
                                               nchar(rownames(nutrients_casesOfInterest)) - c(2, rep(3, length(casesOfInterest)-1)))
 
+binary_cellwise_outliers <- crm_fit$cellwiseoutliers[casesOfInterest, ]
+binary_cellwise_outliers[binary_cellwise_outliers < 0] <- -1
+binary_cellwise_outliers[binary_cellwise_outliers > 0] <- 1
+
+cellwiseheatmap(cellwiseoutliers = binary_cellwise_outliers,
+                data = nutrients_casesOfInterest,
+                margins = c(10, 22), notecex = 2)
+
 cellwiseheatmap(cellwiseoutliers = crm_fit$cellwiseoutliers[casesOfInterest, ],
                 data = nutrients_casesOfInterest,
                 col.scale.factor = 1/5,
                 margins = c(10, 22), notecex = 2)
+
 
 # imputed nutrients data by CRM:
 nutrients.imputed <- exp(crm_fit$data.imputed)

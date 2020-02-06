@@ -207,7 +207,7 @@ crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.fa
 
 
     ## Estimate linear model on weighted and imputed data
-    modeldata <- diag(wr[modelindex]) %*% datamc_imputed[modelindex, ]
+    modeldata <- diag(sqrt(wr[modelindex])) %*% datamc_imputed[modelindex, ]
     res.lm <- lm(formula, data = as.data.frame(modeldata))
     intercept <- ifelse(intercept_flag, res.lm$coefficients[1], 0)
     if (intercept_flag) {
