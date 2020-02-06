@@ -8,17 +8,17 @@
 
 \usage{
 cellwiseheatmap(cellwiseoutliers, data,
-                col = c("blue", "lightgray", "red"),
+                col = c("blue", "lightgray", "red"), col.scale.factor = 1,
                 notecol.outlier = "white", notecol.clean = "black", notecex = 1,
                 margins = c(9.5, 14), lhei = c(0.5, 15), lwid = c(0.1, 3.5),
                 sepcolor = "white", sepwidth = c(0.01, 0.01))
 }
 
 \arguments{
-\item{cellwiseoutliers}{a matrix that indicates the cellwise outliers with 0, 1 or -1,
-      depending on whether the variables are outlying upwards or downwards.}
+\item{cellwiseoutliers}{a matrix that indicates the cellwise outliers as the (scaled) difference between the original data and imputed data, both scaled and centered. Typically the result of a call to the \code{\link{crm}} function.}
 \item{data}{the data as a data frame that is shown in the cells, including row and column names.}
 \item{col}{vector of colors used for downward outliers, clean cells and upward outliers respectively (default is \code{c("blue", "lightgray", "red")}).}
+\item{col.scale.factor}{numeric factor for scaling the colors of the cells (default is \code{1}). Usually a value between 0 and 1, e.g. 1/2, 1/3, etc.}
 \item{notecol.outlier}{character string specifying the color for cellnote text of cellwise outliers (default is \code{"white"}).}
 \item{notecol.clean}{character string specifying the color for cellnote text of clean cells (default is \code{"black"}).}
 \item{notecex}{numeric scaling factor for cellnotes (default is \code{1}).}

@@ -37,8 +37,7 @@ outlyingness.factor * outlyingness AFTER SPADIMO. The larger this factor, the fe
 \item{weights}{the (case) weights of the residuals.}
 \item{data.imputed}{the data as imputed by CRM.}
 \item{casewiseoutliers}{a vector that indicates the casewise outliers with \code{TRUE} or \code{FALSE}.}
-\item{cellwiseoutliers}{a matrix that indicates the cellwise outliers with 0, 1 or -1,
-      depending on whether the variables are outlying upwards or downwards.}
+\item{cellwiseoutliers}{a matrix that indicates the cellwise outliers as the (scaled) difference between the original data and imputed data, both scaled and centered.}
 \item{terms}{the terms object used.}
 \item{call}{the matched call.}
 \item{inputs}{the list of supplied input arguments.}

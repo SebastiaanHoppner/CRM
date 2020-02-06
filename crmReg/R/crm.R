@@ -35,8 +35,8 @@ crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.fa
   #   weights               the (case) weights of the residuals.
   #   data.imputed          the data as imputed by CRM.
   #   casewiseoutliers      a vector that indicates the casewise outliers with TRUE or FALSE.
-  #   cellwiseoutliers      a matrix that indicates the cellwise outliers with 0, 1 or -1,
-  #                         depending on whether the variables are outlying upwards or downwards.
+  #   cellwiseoutliers      a matrix that indicates the cellwise outliers as the difference between
+  #                         the original data and imputed data, both scaled and centered.
   #   terms                 the terms object used.
   #   call                  the matched call.
   #   inputs                the list of supplied input arguments.
@@ -309,11 +309,11 @@ crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.fa
 
 
   ## Derive cells contributing to outlyingness
-  cellwiseoutliers <- as.matrix(sign(datamc[, -1] - datamc_imputed[, -1]))
+  cellwiseoutliers <- as.matrix(datamc[, -1] - datamc_imputed[, -1])
 
 
   ## Derive casewise outliers
-  casewiseoutliers <- apply(cellwiseoutliers, 1, function(x) any(x != 0))
+  casewiseoutliers <- apply(cellwiseoutliers, 1, function (x) any(x != 0))
 
 
   ## Collect results
