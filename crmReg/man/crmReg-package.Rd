@@ -6,7 +6,7 @@
 Cellwise Robust M-regression and SPADIMO
 }
 \description{
-Cellwise Robust M-regression (CRM) and SPArse DIrections of Maximal Outlyiness (SPADIMO).
+Cellwise Robust M-regression (CRM) and SPArse DIrections of Maximal Outlyingness (SPADIMO).
 }
 \details{
 \tabular{ll}{
@@ -58,15 +58,15 @@ the result of a call to the \code{crm} function.
 The function \code{\link{daprpr}} preprocesses the data by classical or robust centering and scaling.
 }
 \author{
-Peter Filzmoser, Sebastiaan Höppner, Iréne Ortner, Sven Serneels, and Tim Verdonck
+Peter Filzmoser, Sebastiaan Hoeppner, Iréne Ortner, Sven Serneels, and Tim Verdonck
 
-Maintainer: Sebastiaan Höppner <sebastiaan.hoppner@kuleuven.be>
+Maintainer: Sebastiaan Hoeppner <sebastiaan.hoppner@kuleuven.be>
 }
 \references{
-Debruyne, M., Höppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: Which variables contribute mots?
+Debruyne, M., Hoeppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: Which variables contribute most?
 \emph{Statistics and Computing}, 29 (4), 707–723. DOI: 10.1007/s11222-018-9831-5
 
-Filzmoser, P., Höppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
+Filzmoser, P., Hoeppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
 \emph{Computational Statistics and Data Analysis}. DOI: 10.1016/j.csda.2020.106944
 }
 
@@ -74,5 +74,58 @@ Filzmoser, P., Höppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020).
 \code{\link{crm}}, \code{\link{spadimo}}, \code{\link{predict.crm}}, \code{\link{cellwiseheatmap}}, \code{\link{daprpr}}
 }
 \examples{
-# Provide an example (TODO).
+library(crmReg)
+data(topgear)
+
+# get case weights from a robust estimator (covMCD function in robustbase package):
+MCD <- robustbase::covMcd(topgear, alpha = 0.5)
+
+# SPADIMO with diagnostic plots:
+# Example 1:
+Peugeot <- spadimo(data = topgear,
+                   weights = MCD$mcd.wt,
+                   obs = which(rownames(topgear) == "Peugeot 107"))
+# check the plots!
+# individual variable names contributing most to Peugeot 107's outlyingness:
+print(Peugeot$outlvars)
+# sparse direction of maximal outlyingness with eta = Peugeot$eta:
+print(Peugeot$a)
+# default SPADIMO control parameters:
+print(Peugeot$control)
+
+# Example 2:
+Bugatti <- spadimo(data = topgear,
+                   weights = MCD$mcd.wt,
+                   obs = which(rownames(topgear) == "Bugatti Veyron"),
+                   control = list(stopearly = TRUE, trace = TRUE, plot = TRUE))
+# check the plots!
+# individual variable names contributing most to Bugatti Veyron's outlyingness:
+print(Bugatti$outlvars)
+# sparse direction of maximal outlyingness with eta = Bugatti$eta:
+print(Bugatti$a)
+
+# fit Cellwise Robust M-regression:
+crmfit <- crm(formula = MPG ~ ., data = topgear)
+
+# estimated regression coefficients and detected casewise outliers:
+print(crmfit$coefficients)
+print(rownames(topgear)[which(crmfit$casewiseoutliers)])
+
+# fitted response values (MPG) versus true response values:
+plot(topgear$MPG, crmfit$fitted.values, xlab = "True MPG", ylab = "Fitted MPG")
+abline(a = 0, b = 1)
+
+# residuals:
+plot(crmfit$residuals, ylab = "Residuals")
+text(x = which(crmfit$residuals > 30), y = crmfit$residuals[which(crmfit$residuals > 30)],
+     labels = rownames(topgear)[which(crmfit$residuals > 30)], pos = 2)
+
+print(cbind.data.frame(car = rownames(topgear),
+                       MPG = topgear$MPG)[which(crmfit$residuals > 30), ])
+
+# cellwise heatmap of casewise outliers:
+cellwiseheatmap(cellwiseoutliers = crmfit$cellwiseoutliers[which(crmfit$casewiseoutliers), ],
+                data = round(topgear[which(crmfit$casewiseoutliers), -7], 2),
+                col.scale.factor = 1/4)
+# check the plotted heatmap!
 }

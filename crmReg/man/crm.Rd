@@ -54,10 +54,10 @@ data cells consistent with a linear model.}
 \item{time}{the number of seconds passed to execute the CRM algorithm.}
 }
 
-\references{Filzmoser, P., Höppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
+\references{Filzmoser, P., Hoeppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
 \emph{Computational Statistics and Data Analysis}, 147(106944). DOI: 10.1016/j.csda.2020.106944}
 
-\author{Peter Filzmoser, Sebastiaan Höppner, Iréne Ortner, Sven Serneels, and Tim Verdonck}
+\author{Peter Filzmoser, Sebastiaan Hoeppner, Iréne Ortner, Sven Serneels, and Tim Verdonck}
 
 
 \seealso{\code{\link{spadimo}}, \code{\link{predict.crm}}, \code{\link{cellwiseheatmap}}, \code{\link{daprpr}}}
