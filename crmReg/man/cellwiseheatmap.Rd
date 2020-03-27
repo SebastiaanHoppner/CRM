@@ -4,7 +4,7 @@
 
 \title{Heatmap of cellwise outliers}
 
-\description{Heatmap of cellwise outliers.}
+\description{Makes a heatmap of cellwise outliers.}
 
 \usage{
 cellwiseheatmap(cellwiseoutliers, data,
@@ -29,14 +29,26 @@ cellwiseheatmap(cellwiseoutliers, data,
 \item{sepwidth}{vector of length 2 giving the width and height of the separator box drawn between the cells (default is \code{c(0.01, 0.01)}).}
 }
 
-\details{\code{cellwiseheatmap} plots a heatmap of cellwise outliers.}
+\details{\code{cellwiseheatmap} plots a heatmap of cellwise outliers which are typically
+the result of a call to the \code{\link{crm}} function.}
 
-\references{...}
+\references{Filzmoser, P., Höppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
+\emph{Computational Statistics and Data Analysis}, 147(106944). DOI: 10.1016/j.csda.2020.106944}
 
-\author{Peter Filzmoser, Sebastiaan Höppner, Iréne Ortner, Sven Serneels and Tim Verdonck}
+\author{Peter Filzmoser, Sebastiaan Höppner, Iréne Ortner, Sven Serneels, and Tim Verdonck}
 
-\seealso{\code{\link{crm}}}
+\seealso{\code{\link{crm}}, \code{\link{spadimo}}, \code{\link{predict.crm}}, \code{\link{daprpr}}}
 
 \examples{
-# Provide an example (TODO).
+library(crmReg)
+data(topgear)
+
+# fit Cellwise Robust M-regression:
+crmfit <- crm(formula = MPG ~ ., data = topgear)
+
+# cellwise heatmap of casewise outliers:
+cellwiseheatmap(cellwiseoutliers = crmfit$cellwiseoutliers[which(crmfit$casewiseoutliers), ],
+                data = round(topgear[which(crmfit$casewiseoutliers), -7], 2),
+                col.scale.factor = 1/4)
+# check the plotted heatmap!
 }

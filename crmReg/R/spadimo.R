@@ -37,27 +37,60 @@ spadimo <- function(data, weights, obs,
   # Written by Sven Serneels, BASF Corp., 4/2016 - 7/2016 & Sebastiaan Höppner, KU Leuven, 4/2017 - 7/2017
   # -----------------------------------------------------------------------------------------------------------------------
 
-  # require(rrcov)
-  # require(robustbase)
+  if (missing(data)) {
+    stop("Argument 'data' is missing, with no default.")
+  }
+  if (missing(weights)) {
+    stop("Argument 'weights' is missing, with no default.")
+  }
+  if (missing(obs)) {
+    stop("Argument 'obs' is missing, with no default.")
+  }
+  if (missing(control)) {
+    control <- list(scaleFun  = Qn,
+                    nlatent   = 1,
+                    etas      = NULL,
+                    csqcritv  = 0.975,
+                    stopearly = FALSE,
+                    trace     = FALSE,
+                    plot      = TRUE)
+  }
 
   # (1) Initiate some values
   starttimer <- proc.time()
+  obs <- as.integer(obs)
   x <- as.matrix(data)
   n <- nrow(x)
   p <- ncol(x)
   w <- weights
 
+  if (is.null(control$scaleFun)) {
+    control$scaleFun <- Qn
+  }
+  if (is.null(control$nlatent)) {
+    control$nlatent <- 1
+  }
   if (is.null(control$etas)) {
     if (n > p) {
-      etas <- seq(0.9, 0.1, -0.05)
+      control$etas <- seq(0.9, 0.1, -0.05)
     } else if (n <= p) {
-      etas <- seq(0.6, 0.1, -0.05)
+      control$etas <- seq(0.6, 0.1, -0.05)
     }
-  } else {
-    etas <- sort(control$etas, decreasing = TRUE)
   }
-  obs <- as.integer(obs)
+  if (is.null(control$csqcritv)) {
+    control$csqcritv <- 0.975
+  }
+  if (is.null(control$stopearly)) {
+    control$stopearly <- FALSE
+  }
+  if (is.null(control$trace)) {
+    control$trace <- FALSE
+  }
+  if (is.null(control$plot)) {
+    control$plot <- TRUE
+  }
 
+  etas <- sort(control$etas, decreasing = TRUE)
   stopcrit <- FALSE
   a.list <- list()
   outlvars.list <- list()

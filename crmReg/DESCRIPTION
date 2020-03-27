@@ -1,18 +1,18 @@
 Package: crmReg
 Type: Package
-Title: Cellwise Robust M-regression
+Title: Cellwise Robust M-regression and SPADIMO
 Version: 1.0.0
 Author: Peter Filzmoser [aut],
-  Sebastiaan Höppner [aut],
+  Sebastiaan Höppner [aut, cre],
   Iréne Ortner [aut],
   Sven Serneels [aut, cre],
   Tim Verdonck [aut]
-Maintainer: Sven Serneels <svenserneels@gmail.com>
-Description: Cellwise Robust M-regression.
-Depends: R (>= 3.2.0)
+Maintainer: Sebastiaan Höppner <sebastiaan.hoppner@kuleuven.be>
+Description: Cellwise Robust M-regression (CRM) and SPArse DIrections of Maximal Outlyiness (SPADIMO).
+Depends: R (>= 3.5.0)
 Imports: FNN, ggplot2, gplots, pcaPP, plyr, robustbase, rrcov
 License: GPL (>= 2)
 LazyLoad: yes
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 NeedsCompilation: yes

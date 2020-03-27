@@ -1,6 +1,6 @@
 crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.factor = 1,
                  spadieta = seq(0.9, 0.1, -0.1), center = "median", scale = "qn",
-                 regtype = "LTS", alphaLTS = 0.5, seed = NULL, verbose = TRUE) {
+                 regtype = "MM", alphaLTS = NULL, seed = NULL, verbose = TRUE) {
   # -----------------------------------------------------------------------------------------------
   # CRM - Cellwise Robust M-regression
   # -----------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.fa
   #                         to be used for centering (default is "median").
   #   scale     (optional)  how to scale the data. Choices are "no" (no scaling) or a string
   #                         matching the R function to be used for scaling (default is "qn").
-  #   regtype   (optional)  type of robust regression. Choices are "LTS" (default) or "MM".
+  #   regtype   (optional)  type of robust regression. Choices are "MM" (default) or "LTS".
   #   alphaLTS  (optional)  parameter used by LTS regression. The percentage (roughly) of
   #                         squared residuals whose sum will be minimized (default is 0.5).
   #   seed      (optional)  initial seed for random generator, like .Random.seed
@@ -75,6 +75,9 @@ crm <- function (formula, data, maxiter = 100, tolerance = 0.01, outlyingness.fa
     stop("argument 'regtype' must be either 'LTS' or 'MM'")
   }
   if (regtype == "LTS") {
+    if (is.null(alphaLTS)) {
+      stop("argment 'alphaLTS' must be between 0.5 and 1")
+    }
     if (alphaLTS < 0.5 | alphaLTS > 1) {
       stop("argment 'alphaLTS' must be between 0.5 and 1")
     }

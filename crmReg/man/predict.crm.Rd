@@ -12,22 +12,35 @@
 
 \arguments{
 \item{object}{a fitted object of class "\code{crm}".}
-\item{newdata}{optionally, a data frame in which to look for variables with which to predict. If omitted, the fitted coefficients are used.}
+\item{newdata}{optionally, a data frame in which to look for variables with which to predict.
+If omitted, the fitted coefficients are used.}
 \item{...}{further arguments passed to or from other methods.}
 }
 
-\details{...}
+\details{\code{predict.crm} produces predicted values, obtained by evaluating the fitted
+\code{\link{crm}} object on the data frame \code{newdata}.}
 
 \value{
 \code{predict.crm} returns a vector of predicted response values.
 }
 
-\author{Peter Filzmoser, Sebastiaan Höppner, Iréne Ortner, Sven Serneels and Tim Verdonck}
+\references{Filzmoser, P., Höppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
+\emph{Computational Statistics and Data Analysis}, 147(106944). DOI: 10.1016/j.csda.2020.106944}
 
-\references{...}
+\author{Peter Filzmoser, Sebastiaan Höppner, Iréne Ortner, Sven Serneels, and Tim Verdonck}
 
-\seealso{\code{\link{crm}}, \code{\link{predict}}}
+\seealso{\code{\link{crm}}, \code{\link{spadimo}}, \code{\link{cellwiseheatmap}}, \code{\link{daprpr}}}
 
 \examples{
-# Provide an example (TODO).
+library(crmReg)
+data(topgear)
+
+train <- topgear[1:200, ]
+test <- topgear[201:245, ]
+
+crmfit <- crm(formula = MPG ~ ., data = train, seed = 2020)
+
+estimated_MPG_test <- predict(crmfit, newdata = test)
+plot(test$MPG, estimated_MPG_test, xlab = "True MPG", ylab = "Estimated MPG")
+abline(a = 0, b = 1)
 }
