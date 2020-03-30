@@ -64,11 +64,12 @@ an outlier lies out.
 }
 
 \references{
-Debruyne, M., Hoeppner, S., Serneels, S, and Verdonck, T. (2019). Outylyingness: Which variables contribute most?
-\emph{Statistics and Computing}, 29 (4), 707–723. DOI: 10.1007/s11222-018-9831-5
+Debruyne, M., Hoppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: Which variables contribute most?
+\emph{Statistics and Computing}, 29 (4), 707–723.
+\emph{DOI:10.1007/s11222-018-9831-5}
 }
 
-\author{Michiel Debruyne, Sebastiaan Hoeppner, Sven Serneels, and Tim Verdonck}
+\author{Michiel Debruyne, Sebastiaan Hoppner, Sven Serneels, and Tim Verdonck}
 
 \seealso{\code{\link{crm}}, \code{\link{predict.crm}}, \code{\link{cellwiseheatmap}}, \code{\link{daprpr}}}
 

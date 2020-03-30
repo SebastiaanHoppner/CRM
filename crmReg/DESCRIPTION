@@ -2,16 +2,23 @@ Package: crmReg
 Type: Package
 Title: Cellwise Robust M-Regression and SPADIMO
 Version: 1.0.0
-Author: Peter Filzmoser [aut],
-  Sebastiaan Hoeppner [aut, cre],
-  Iréne Ortner [aut],
-  Sven Serneels [aut, cre],
-  Tim Verdonck [aut]
-Maintainer: Sebastiaan Hoeppner <sebastiaan.hoppner@kuleuven.be>
-Description: Cellwise Robust M-regression (CRM) and Sparse Directions of Maximal Outlyingness (SPADIMO).
+Authors@R: c(
+            person(given = "Peter", family = "Filzmoser", role = c("aut")),
+            person(given = "Sebastiaan", family = "Hoppner", role = c("aut", "cre"), email = "sebastiaan.hoppner@kuleuven.be"),
+            person(given = "Irene", family = "Ortner", role = c("aut")),
+            person(given = "Sven", family = "Serneels", role = c("aut")),
+            person(given = "Tim", family = "Verdonck", role = c("aut"))
+             )
+Description: Method for fitting a cellwise robust linear M-regression model (CRM) that yields both a map of cellwise outliers consistent with the linear model, and a vector of regression coefficients that is robust against vertical outliers and leverage points. As a by-product, the method yields an imputed data set that contains estimates of what the values in cellwise outliers would need to amount to if they had fit the model. The package also provides diagnostic tools for analyzing casewise and cellwise outliers using sparse directions of maximal outlyingness (SPADIMO).
 Depends: R (>= 3.5.0)
 Imports: FNN, ggplot2, gplots, pcaPP, plyr, robustbase, rrcov
 License: GPL (>= 2)
+Author: Peter Filzmoser [aut],
+  Sebastiaan Hoppner [aut, cre],
+  Irene Ortner [aut],
+  Sven Serneels [aut],
+  Tim Verdonck [aut]
+Maintainer: Sebastiaan Hoppner <sebastiaan.hoppner@kuleuven.be>
 LazyLoad: yes
 Encoding: UTF-8
 LazyData: false

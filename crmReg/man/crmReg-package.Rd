@@ -6,7 +6,12 @@
 Cellwise Robust M-regression and SPADIMO
 }
 \description{
-Cellwise Robust M-regression (CRM) and SPArse DIrections of Maximal Outlyingness (SPADIMO).
+Method for fitting a cellwise robust linear M-regression model (CRM) that yields both
+a map of cellwise outliers consistent with the linear model, and a vector of regression coefficients
+that is robust against vertical outliers and leverage points. As a by-product, the method yields an
+imputed data set that contains estimates of what the values in cellwise outliers would need to
+amount to if they had fit the model. The package also provides diagnostic tools for analyzing
+casewise and cellwise outliers using sparse directions of maximal outlyingness (SPADIMO).
 }
 \details{
 \tabular{ll}{
@@ -58,16 +63,18 @@ the result of a call to the \code{crm} function.
 The function \code{\link{daprpr}} preprocesses the data by classical or robust centering and scaling.
 }
 \author{
-Peter Filzmoser, Sebastiaan Hoeppner, Iréne Ortner, Sven Serneels, and Tim Verdonck
+Peter Filzmoser, Sebastiaan Hoppner, Irene Ortner, Sven Serneels, and Tim Verdonck
 
-Maintainer: Sebastiaan Hoeppner <sebastiaan.hoppner@kuleuven.be>
+Maintainer: Sebastiaan Hoppner <sebastiaan.hoppner@kuleuven.be>
 }
 \references{
-Debruyne, M., Hoeppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: Which variables contribute most?
-\emph{Statistics and Computing}, 29 (4), 707–723. DOI: 10.1007/s11222-018-9831-5
+Debruyne, M., Hoppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: Which variables contribute most?
+\emph{Statistics and Computing}, 29 (4), 707–723.
+\emph{DOI:10.1007/s11222-018-9831-5}
 
-Filzmoser, P., Hoeppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
-\emph{Computational Statistics and Data Analysis}. DOI: 10.1016/j.csda.2020.106944
+Filzmoser, P., Hoppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
+\emph{Computational Statistics and Data Analysis}.
+\emph{DOI:10.1016/j.csda.2020.106944}
 }
 
 \seealso{

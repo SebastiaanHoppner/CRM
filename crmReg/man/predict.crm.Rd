@@ -24,10 +24,13 @@ If omitted, the fitted coefficients are used.}
 \code{predict.crm} returns a vector of predicted response values.
 }
 
-\references{Filzmoser, P., Hoeppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
-\emph{Computational Statistics and Data Analysis}, 147(106944). DOI: 10.1016/j.csda.2020.106944}
+\references{
+Filzmoser, P., Hoppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
+\emph{Computational Statistics and Data Analysis}.
+\emph{DOI:10.1016/j.csda.2020.106944}
+}
 
-\author{Peter Filzmoser, Sebastiaan Hoeppner, Iréne Ortner, Sven Serneels, and Tim Verdonck}
+\author{Peter Filzmoser, Sebastiaan Hoppner, Irene Ortner, Sven Serneels, and Tim Verdonck}
 
 \seealso{\code{\link{crm}}, \code{\link{spadimo}}, \code{\link{cellwiseheatmap}}, \code{\link{daprpr}}}
 
