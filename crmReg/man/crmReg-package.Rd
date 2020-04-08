@@ -6,12 +6,12 @@
 Cellwise Robust M-regression and SPADIMO
 }
 \description{
-Method for fitting a cellwise robust linear M-regression model (CRM) that yields both
+Method for fitting a cellwise robust linear M-regression model (CRM, Filzmoser et al. (2020) <DOI:10.1016/j.csda.2020.106944>) that yields both
 a map of cellwise outliers consistent with the linear model, and a vector of regression coefficients
 that is robust against vertical outliers and leverage points. As a by-product, the method yields an
 imputed data set that contains estimates of what the values in cellwise outliers would need to
 amount to if they had fit the model. The package also provides diagnostic tools for analyzing
-casewise and cellwise outliers using sparse directions of maximal outlyingness (SPADIMO).
+casewise and cellwise outliers using sparse directions of maximal outlyingness (SPADIMO, Debruyne et al. (2019) <DOI:10.1007/s11222-018-9831-5>).
 }
 \details{
 \tabular{ll}{
@@ -73,7 +73,7 @@ Debruyne, M., Hoppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: 
 \emph{DOI:10.1007/s11222-018-9831-5}
 
 Filzmoser, P., Hoppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
-\emph{Computational Statistics and Data Analysis}.
+\emph{Computational Statistics and Data Analysis}, 147, 106944.
 \emph{DOI:10.1016/j.csda.2020.106944}
 }
 

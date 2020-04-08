@@ -26,7 +26,7 @@ If omitted, the fitted coefficients are used.}
 
 \references{
 Filzmoser, P., Hoppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M regression.
-\emph{Computational Statistics and Data Analysis}.
+\emph{Computational Statistics and Data Analysis}, 147, 106944.
 \emph{DOI:10.1016/j.csda.2020.106944}
 }
 
