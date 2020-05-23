@@ -4,7 +4,7 @@ Title: Cellwise Robust M-Regression and SPADIMO
 Version: 1.0.1
 Authors@R: c(
             person(given = "Peter", family = "Filzmoser", role = c("aut")),
-            person(given = "Sebastiaan", family = "Hoppner", role = c("aut", "cre"), email = "sebastiaan.hoppner@kuleuven.be"),
+            person(given = "Sebastiaan", family = "Hoppner", role = c("aut", "cre"), email = "sebastiaan.hoppner@gmail.com"),
             person(given = "Irene", family = "Ortner", role = c("aut")),
             person(given = "Sven", family = "Serneels", role = c("aut")),
             person(given = "Tim", family = "Verdonck", role = c("aut"))
@@ -18,7 +18,7 @@ Author: Peter Filzmoser [aut],
   Irene Ortner [aut],
   Sven Serneels [aut],
   Tim Verdonck [aut]
-Maintainer: Sebastiaan Hoppner <sebastiaan.hoppner@kuleuven.be>
+Maintainer: Sebastiaan Hoppner <sebastiaan.hoppner@gmail.com>
 LazyLoad: yes
 Encoding: UTF-8
 LazyData: false

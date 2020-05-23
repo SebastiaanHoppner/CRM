@@ -17,7 +17,7 @@ casewise and cellwise outliers using sparse directions of maximal outlyingness (
 \tabular{ll}{
 Package: \tab crmReg \cr
 Type: \tab Package \cr
-Version: \tab 1.0.0 \cr
+Version: \tab 1.0.1 \cr
 Date: \tab 2020-03-26 \cr
 License: \tab GPL (>=2) \cr
 }
