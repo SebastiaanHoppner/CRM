@@ -1,5 +1,5 @@
 # CRM
-This repository contains the R package `crmReg` and the corresponding papers:
+This repository contains the R package `crmReg` and the corresponding articles:
 
 Debruyne, M., Höppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: Which variables contribute most? Statistics and Computing, 29 (4), 707–723. DOI: 10.1007/s11222-018-9831-5  
 https://link.springer.com/article/10.1007/s11222-018-9831-5  
