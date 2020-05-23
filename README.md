@@ -1,5 +1,7 @@
 # CRM
-This repository contains the R package and the corresponding papers on Cellwise Robust M-regression (2019) by P. Filzmoser, S. Höppner, I. Ortner, S. Serneels and T. Verdonck (https://doi.org/10.1016/j.csda.2020.106944) and Outlyingness: Which variables contribute most? (2019) (https://link.springer.com/article/10.1007/s11222-018-9831-5).
+This repository contains the R package and the corresponding papers:  
+Debruyne, M., Höppner, S., Serneels, S., and Verdonck, T. (2019). Outlyingness: Which variables contribute most? Statistics and Computing, 29 (4), 707–723. DOI: 10.1007/s11222-018-9831-5 - https://link.springer.com/article/10.1007/s11222-018-9831-5  
+Filzmoser, P., Höppner, S., Ortner, I., Serneels, S., and Verdonck, T. (2020). Cellwise Robust M Regression. Computational Statistics and Data Analysis, 147:106944. DOI: 10.1016/j.csda.2020.106944 - https://doi.org/10.1016/j.csda.2020.106944
 
 The R package `crmReg` contains the implementation of the Cellwise Robust M-regression (CRM) algorithm and the SPArse DIrections of Maximal Outlyingness (SPADIMO) algorithm. The `crmReg` package also includes the predict function for fitted CRM regression models, the data preprocessing function used by CRM as well as the function that creates the cellwise heatmaps in the paper. Furthermore, this repository contains the R scripts, as used in the paper, for the simuation studies and the application of CRM on the Nutrients data set.
 
