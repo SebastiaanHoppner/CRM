@@ -1,7 +1,7 @@
 Package: crmReg
 Type: Package
 Title: Cellwise Robust M-Regression and SPADIMO
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(
             person(given = "Peter", family = "Filzmoser", role = c("aut")),
             person(given = "Sebastiaan", family = "Hoppner", role = c("aut", "cre"), email = "sebastiaan.hoppner@gmail.com"),
